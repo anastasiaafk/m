@@ -1,224 +1,607 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Playful Cat No Button</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой милый маленький котёнок</title>
+
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
         }
 
         body {
-            height: 100vh;
-            width: 100vw;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #fce4ec;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             overflow: hidden;
-            position: fixed;
+            background: linear-gradient(
+                135deg, #ffe4ef, #fce4ec, #f3e5f5
+            );
+            font-family: -apple-system, BlinkMacSystemFont,
+                "Segoe UI", sans-serif;
         }
 
         .card {
-            background: white;
-            padding: 24px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 88%;
+            max-width: 360px;
+            padding: 28px 20px 32px;
             text-align: center;
-            width: 85%;
-            max-width: 340px;
+            background: rgba(255, 255, 255, 0.94);
+            border: 2px solid #fff;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(190, 90, 140, 0.15);
         }
 
         h1 {
-            color: #880e4f;
-            font-size: 1.5rem;
-            margin-bottom: 24px;
+            color: #ad4277;
+            font-size: 1.65rem;
+            margin-bottom: 8px;
         }
+
+        .subtitle {
+            color: #b8799a;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        /* Cute kitten */
+
+        .kitten {
+            position: relative;
+            width: 190px;
+            height: 175px;
+            margin: 0 auto 18px;
+            animation: float 3s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .tail {
+            position: absolute;
+            width: 70px;
+            height: 65px;
+            left: 115px;
+            top: 91px;
+            border: 13px solid #e9a17e;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            transform: rotate(35deg);
+            transform-origin: 10% 90%;
+            animation: tail-wag 1.5s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .body {
+            position: absolute;
+            width: 112px;
+            height: 83px;
+            left: 39px;
+            top: 83px;
+            border-radius: 50% 50% 42% 42%;
+            background: linear-gradient(145deg, #ffd8b8, #efa982);
+            box-shadow: inset -5px -5px 0 rgba(196, 117, 83, 0.08);
+            z-index: 1;
+        }
+
+        .belly {
+            position: absolute;
+            width: 65px;
+            height: 54px;
+            left: 23px;
+            bottom: 0;
+            background: #fff0df;
+            border-radius: 50%;
+        }
+
+        .head {
+            position: absolute;
+            width: 132px;
+            height: 115px;
+            left: 29px;
+            top: 16px;
+            background: linear-gradient(145deg, #ffe0c5, #f6b991);
+            border-radius: 48% 48% 45% 45%;
+            box-shadow: inset -4px -5px 0 rgba(200, 119, 84, 0.08);
+            z-index: 3;
+        }
+
+        /* Ears */
+
+        .ear {
+            position: absolute;
+            top: -15px;
+            width: 43px;
+            height: 51px;
+            background: #f3b18c;
+            border-radius: 50% 50% 15% 15%;
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+        }
+
+        .ear.left {
+            left: 5px;
+            transform: rotate(-17deg);
+        }
+
+        .ear.right {
+            right: 5px;
+            transform: rotate(17deg);
+        }
+
+        .ear::after {
+            content: "";
+            position: absolute;
+            width: 25px;
+            height: 34px;
+            top: 9px;
+            left: 9px;
+            background: #f28ba8;
+            border-radius: 50% 50% 20% 20%;
+        }
+
+        /* Forehead markings */
+
+        .stripe {
+            position: absolute;
+            top: 8px;
+            width: 6px;
+            height: 17px;
+            background: #e9a17e;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .stripe.one {
+            left: 57px;
+            transform: rotate(-15deg);
+        }
+
+        .stripe.two {
+            left: 67px;
+            height: 21px;
+        }
+
+        .stripe.three {
+            left: 77px;
+            transform: rotate(15deg);
+        }
+
+        /* Big sparkling eyes */
+
+        .eye {
+            position: absolute;
+            top: 48px;
+            width: 24px;
+            height: 30px;
+            background: #5a3b32;
+            border-radius: 50%;
+            overflow: hidden;
+            animation: blink 5s infinite;
+        }
+
+        .eye.left {
+            left: 29px;
+        }
+
+        .eye.right {
+            right: 29px;
+        }
+
+        .eye::before {
+            content: "";
+            position: absolute;
+            width: 9px;
+            height: 11px;
+            top: 4px;
+            left: 4px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .eye::after {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            right: 4px;
+            bottom: 5px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        /* Cheeks and nose */
+
+        .cheek {
+            position: absolute;
+            top: 75px;
+            width: 24px;
+            height: 13px;
+            background: #f28ba8;
+            border-radius: 50%;
+            opacity: 0.65;
+        }
+
+        .cheek.left {
+            left: 12px;
+        }
+
+        .cheek.right {
+            right: 12px;
+        }
+
+        .nose {
+            position: absolute;
+            top: 77px;
+            left: 61px;
+            width: 11px;
+            height: 8px;
+            background: #d77d91;
+            border-radius: 50% 50% 60% 60%;
+        }
+
+        .mouth {
+            position: absolute;
+            top: 84px;
+            left: 56px;
+            width: 21px;
+            height: 12px;
+            border-bottom: 2px solid #9b615a;
+            border-radius: 50%;
+        }
+
+        .mouth::after {
+            content: "";
+            position: absolute;
+            left: 9px;
+            top: 0;
+            height: 9px;
+            border-left: 2px solid #9b615a;
+        }
+
+        /* Little paws */
+
+        .paw {
+            position: absolute;
+            bottom: -4px;
+            width: 36px;
+            height: 24px;
+            background: #ffe9d8;
+            border: 2px solid #efa982;
+            border-radius: 50%;
+            z-index: 5;
+        }
+
+        .paw.left {
+            left: 51px;
+        }
+
+        .paw.right {
+            right: 51px;
+        }
+
+        .paw::after {
+            content: "•••";
+            position: absolute;
+            color: #e9a17e;
+            font-size: 11px;
+            letter-spacing: 1px;
+            top: 3px;
+            left: 8px;
+        }
+
+        /* Buttons */
 
         .button-container {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 15px;
-            min-height: 50px;
-            position: relative;
+            min-height: 52px;
         }
 
         button {
             padding: 14px 28px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             border: none;
             border-radius: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            cursor: pointer;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+            transition: transform 0.2s, box-shadow 0.2s;
             -webkit-tap-highlight-color: transparent;
         }
 
+        button:active {
+            transform: scale(0.95);
+        }
+
         #yesBtn {
-            background-color: #4caf50;
+            background: linear-gradient(135deg, #ff8ab5, #ed5d99);
             color: white;
         }
 
         #noBtn {
-            background-color: #f44336;
+            background: #b9a7e8;
             color: white;
             position: fixed;
             z-index: 10;
-            transition: top 0.15s ease-out, left 0.15s ease-out;
+            transition: top 0.2s ease, left 0.2s ease;
         }
 
-        /* Animated CSS Cat */
-        .cat-container {
-            position: fixed;
-            pointer-events: none;
-            z-index: 20;
+        /* Cute messages */
+
+        #cuteMessage {
             display: none;
-            transition: top 0.15s ease-out, left 0.15s ease-out;
+            margin-top: 20px;
+            color: #ad4277;
+            font-size: 1rem;
+            font-weight: bold;
+            line-height: 1.5;
+            animation: message-pop 0.3s ease-out;
         }
 
-        .cat {
-            position: relative;
-            width: 70px;
-            height: 52px;
-            background: #ff9800;
-            border-radius: 25px 25px 18px 18px;
+        @keyframes message-pop {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
-        /* Ears */
-        .cat::before, .cat::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 15px solid #ff9800;
-        }
-        .cat::before { left: 6px; transform: rotate(-10deg); }
-        .cat::after { right: 6px; transform: rotate(10deg); }
+        /* Floating hearts */
 
-        /* Face */
-        .eyes {
-            position: absolute;
-            top: 16px;
-            left: 14px;
-            right: 14px;
-            display: flex;
-            justify-content: space-between;
+        .heart {
+            position: fixed;
+            color: #f28ba8;
+            font-size: 20px;
+            pointer-events: none;
+            animation: heart-float 2s ease-out forwards;
+            z-index: 30;
         }
 
-        .eye {
-            width: 8px;
-            height: 8px;
-            background: #000;
-            border-radius: 50%;
+        /* Animations */
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-7px);
+            }
         }
 
-        .paw {
-            position: absolute;
-            bottom: -8px;
-            width: 20px;
-            height: 14px;
-            background: #ffe0b2;
-            border-radius: 8px;
-            border: 2px solid #ff9800;
+        @keyframes tail-wag {
+            0%, 100% {
+                transform: rotate(35deg);
+            }
+            50% {
+                transform: rotate(65deg);
+            }
         }
-        .paw.left { left: 8px; }
-        .paw.right { right: 8px; }
 
-        .pounce-animation {
-            animation: pounce 0.25s ease-out;
+        @keyframes blink {
+            0%, 44%, 48%, 100% {
+                transform: scaleY(1);
+            }
+            46% {
+                transform: scaleY(0.1);
+            }
+        }
+
+        @keyframes heart-float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.7);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-65px) scale(1.3);
+            }
+        }
+
+        .kitten.pounce {
+            animation: pounce 0.35s ease-out;
         }
 
         @keyframes pounce {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.25) translateY(-8px); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+            45% {
+                transform: scale(1.13) translateY(-15px);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="card">
-        <h1>Will you be my friend?</h1>
-        <div class="button-container">
-            <button id="yesBtn" onclick="alert('Yay! 🎉')">Yes</button>
-            <button id="noBtn">No</button>
-        </div>
-    </div>
+        <h1>Пожалуйста, прости меня? 💗</h1>
+        <p class="subtitle">Моя маленькая кошка хочет знать!</p>
 
-    <!-- Cat Element -->
-    <div class="cat-container" id="cat">
-        <div class="cat">
-            <div class="eyes">
-                <div class="eye"></div>
-                <div class="eye"></div>
+        <div class="kitten" id="kitten">
+
+            <div class="tail"></div>
+
+            <div class="body">
+                <div class="belly"></div>
             </div>
+
+            <div class="head">
+                <div class="ear left"></div>
+                <div class="ear right"></div>
+
+                <div class="stripe one"></div>
+                <div class="stripe two"></div>
+                <div class="stripe three"></div>
+
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+
+                <div class="cheek left"></div>
+                <div class="cheek right"></div>
+
+                <div class="nose"></div>
+                <div class="mouth"></div>
+            </div>
+
             <div class="paw left"></div>
             <div class="paw right"></div>
+
         </div>
+
+        <div class="button-container">
+            <button id="yesBtn">Да! 💖</button>
+            <button id="noBtn">Нет 🙈</button>
+        </div>
+
+        <!-- Messages appear here -->
+        <p id="cuteMessage" aria-live="polite"></p>
     </div>
 
     <script>
-        const noBtn = document.getElementById('noBtn');
-        const cat = document.getElementById('cat');
+        const noBtn = document.getElementById("noBtn");
+        const yesBtn = document.getElementById("yesBtn");
+        const kitten = document.getElementById("kitten");
+        const cuteMessage = document.getElementById("cuteMessage");
 
-        // Align 'No' button initial position relative to layout
-        window.addEventListener('load', setInitialPosition);
-        window.addEventListener('resize', setInitialPosition);
+        let noClicks = 0;
+        let hasMoved = false;
 
+        const messages = [
+            "Хе-хе... ты по мне скучал! 🐱💕",
+            "Ты уверена? 🥺",
+            "Пожалуйста, не говори «нет»! 😿💗",
+            "Котёнку сейчас грустно... 😭🐱",
+            "Ладно, ладно... еще один шанс? 🥹💖"
+        ];
+
+        // Position the No button next to Yes.
         function setInitialPosition() {
-            const yesRect = document.getElementById('yesBtn').getBoundingClientRect();
-            noBtn.style.left = (yesRect.right + 20) + 'px';
-            noBtn.style.top = yesRect.top + 'px';
+            if (hasMoved) return;
+
+            const yesRect = yesBtn.getBoundingClientRect();
+
+            noBtn.style.left = (yesRect.right + 15) + "px";
+            noBtn.style.top = yesRect.top + "px";
         }
 
-        function dodge(e) {
-            if (e) e.preventDefault();
+        // Create floating hearts.
+        function createHeart(x, y) {
+            const heart = document.createElement("div");
 
+            heart.className = "heart";
+            heart.textContent = Math.random() > 0.5 ? "♥" : "♡";
+
+            heart.style.left = x + "px";
+            heart.style.top = y + "px";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 2000);
+        }
+
+        // Move the No button and update the message.
+        function dodge(event) {
+            if (event) event.preventDefault();
+
+            hasMoved = true;
+            noClicks++;
+
+            // Show a new message for each click.
+            if (noClicks <= messages.length) {
+                cuteMessage.textContent = messages[noClicks - 1];
+            } else {
+                cuteMessage.textContent =
+                    "Котёнок всё ещё верит в тебя! 🐱💗";
+            }
+
+            cuteMessage.style.display = "block";
+
+            // Keep the button inside the screen.
+            const padding = 20;
             const btnWidth = noBtn.offsetWidth;
             const btnHeight = noBtn.offsetHeight;
-            const padding = 20;
 
-            // Safe screen bounds for touch displays
-            const maxX = window.innerWidth - btnWidth - padding;
-            const maxY = window.innerHeight - btnHeight - padding;
+            const maxX = Math.max(
+                padding,
+                window.innerWidth - btnWidth - padding
+            );
 
-            const newX = Math.max(padding, Math.floor(Math.random() * maxX));
-            const newY = Math.max(padding, Math.floor(Math.random() * maxY));
+            const maxY = Math.max(
+                padding,
+                window.innerHeight - btnHeight - padding
+            );
 
-            // Position cat above current button location
-            cat.style.display = 'block';
-            cat.style.left = (noBtn.offsetLeft - 10) + 'px';
-            cat.style.top = (noBtn.offsetTop - 45) + 'px';
+            const newX = padding +
+                Math.random() * (maxX - padding);
 
-            // Trigger animation
-            cat.classList.remove('pounce-animation');
-            void cat.offsetWidth;
-            cat.classList.add('pounce-animation');
+            const newY = padding +
+                Math.random() * (maxY - padding);
 
-            // Shift button and follow with cat
-            noBtn.style.left = newX + 'px';
-            noBtn.style.top = newY + 'px';
+            noBtn.style.left = newX + "px";
+            noBtn.style.top = newY + "px";
 
-            setTimeout(() => {
-                cat.style.left = (newX - 10) + 'px';
-                cat.style.top = (newY - 45) + 'px';
-            }, 80);
+            // Make the kitten jump.
+            kitten.classList.remove("pounce");
+            void kitten.offsetWidth;
+            kitten.classList.add("pounce");
+
+            // Make the kitten follow the button.
+            const kittenX = Math.min(
+                window.innerWidth - 190,
+                Math.max(0, newX - 65)
+            );
+
+            const kittenY = Math.min(
+                window.innerHeight - 175,
+                Math.max(0, newY - 160)
+            );
+
+            kitten.style.position = "fixed";
+            kitten.style.left = kittenX + "px";
+            kitten.style.top = kittenY + "px";
+            kitten.style.margin = "0";
+
+            // Sprinkle some hearts.
+            createHeart(
+                newX + btnWidth / 2,
+                newY
+            );
         }
 
-        // Mobile touch events + desktop mouse fallback
-        noBtn.addEventListener('touchstart', dodge, { passive: false });
-        noBtn.addEventListener('pointerdown', dodge);
-        noBtn.addEventListener('mouseover', dodge);
+        // Avoid moving the button merely because of hovering.
+        noBtn.addEventListener("pointerdown", dodge);
+
+        // Yes button.
+        yesBtn.addEventListener("click", () => {
+            alert("Ура! Мой котёнок тебя любит! 💖🐱");
+        });
+
+        window.addEventListener("load", setInitialPosition);
+        window.addEventListener("resize", setInitialPosition);
     </script>
+
 </body>
 </html>
