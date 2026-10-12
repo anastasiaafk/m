@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2048 — Mini-Game Hub</title>
+    <title>2048</title>
     <style>
         :root {
             --bg: #0f1117; --panel: #171a23; --panel-2: #1e2230; --border: #2a2f3f;
@@ -103,19 +103,19 @@
 </head>
 <body>
     <header class="topbar">
-        <a class="back" href="index.html">← Hub</a>
+        <a class="back" href="index.html">Главная страница</a>
         <h1>🧩 2048</h1>
         <button id="theme-btn" class="icon-btn" title="Toggle theme">☀️</button>
     </header>
 
     <div class="hud">
-        <div class="stat"><div class="label">Score</div><div class="value" id="score">0</div></div>
-        <div class="stat" id="best-stat"><div class="label">Best</div><div class="value" id="best">0</div></div>
+        <div class="stat"><div class="label">Счет</div><div class="value" id="score">0</div></div>
+        <div class="stat" id="best-stat"><div class="label">Лучший</div><div class="value" id="best">0</div></div>
     </div>
 
     <div class="toolbar">
-        <button class="tool-btn" id="undo-btn" disabled>↩️ Undo</button>
-        <button class="tool-btn" id="new-btn">🔄 New Game</button>
+        <button class="tool-btn" id="undo-btn" disabled>↩️ Отменить</button>
+        <button class="tool-btn" id="new-btn">🔄 Новая игра</button>
     </div>
 
     <div class="stage">
@@ -124,13 +124,13 @@
             <p class="big" id="ov-title"></p>
             <p class="sub" id="ov-sub"></p>
             <div class="row">
-                <button class="btn" id="ov-new">New Game</button>
-                <button class="btn ghost hidden" id="ov-continue">Keep Going</button>
+                <button class="btn" id="ov-new">Новая игра</button>
+                <button class="btn ghost hidden" id="ov-continue">Продолжать идти</button>
             </div>
         </div>
     </div>
 
-    <p class="hint">Arrow keys / WASD or swipe to move. Join tiles to reach <b>2048</b>!</p>
+    <p class="hint">Анастасия, надеюсь, тебе понравится эта игра!</p>
 
     <script>
         const themeBtn = document.getElementById('theme-btn');
@@ -252,7 +252,7 @@
         function checkEnd() {
             if (!won && !keepPlaying && board.some(row => row.some(v => v === 2048))) {
                 won = true;
-                showOverlay('🎉 You made 2048!', `Score: ${score}`, true);
+                showOverlay('🎉 Вы собрали 2048!', `Score: ${score}`, true);
                 return;
             }
             for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
@@ -262,7 +262,7 @@
             }
             over = true;
             const isBest = score >= best && score > 0;
-            showOverlay('💀 Game Over', `Score: ${score}` + (isBest ? ' · 🏆 New best!' : ` · Best: ${best}`), false);
+            showOverlay('💀 Игра закончена', `Счет: ${score}` + (isBest ? ' · 🏆 Новый лучший результат!' : ` · Лучший: ${best}`), false);
         }
 
         function showOverlay(title, sub, canContinue) {
