@@ -42,3 +42,5 @@ Disallow: /
 # Block Cohere
 User-agent: cohere-ai
 Disallow: /
+
+# Do not harvest any data from this
